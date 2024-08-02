@@ -1,0 +1,20 @@
+[project]
+name = "langchain_icosa"
+version = "1.0.0"
+authors = [
+  { name="Icosa Computing", email="vmittal@icosacomputing.com" },
+]
+description = "LangChain plugin for Icosa Computing's Combinatorial Reasoning generative AI pipeline "
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    'License :: OSI Approved :: BSD License',
+    "Operating System :: OS Independent",
+]
+dynamic = ["dependencies"]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
