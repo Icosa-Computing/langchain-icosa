@@ -100,6 +100,8 @@ class CombinatorialReasoningLLM(LLM):
         generations = []
         distinct_reasons_list = []
         selected_reasons_list = []
+        sampled_reasons_flat_list = []
+        sampled_reasons_matrix_list = []
 
         new_arg_supported = inspect.signature(self._call).parameters.get("run_manager")
 
@@ -114,15 +116,21 @@ class CombinatorialReasoningLLM(LLM):
             text = llm_result['text']
             distinct_reasons = llm_result['distinctReasons']
             selected_reasons = llm_result['selectedReasons']
+            sampled_reasons_flat = llm_result['sampledReasonsFlat']
+            sampled_reasons_matrix = llm_result['sampledReasonsMatrix']
 
             generations.append([Generation(text=text)])
             distinct_reasons_list.append(distinct_reasons)
             selected_reasons_list.append(selected_reasons)
+            sampled_reasons_matrix_list.append(sampled_reasons_matrix)
+            sampled_reasons_flat_list.append(sampled_reasons_flat)
         return LLMResult(
             generations=generations,
             llm_output={
                 'distinct_reasons': distinct_reasons_list,
-                'selected_reasons': selected_reasons_list
+                'selected_reasons': selected_reasons_list, 
+                'sampled_reasons_flat': sampled_reasons_flat_list, 
+                'sampled_reasons_matrix': sampled_reasons_matrix_list
             }
         )
     
@@ -159,6 +167,9 @@ class CombinatorialReasoningLLM(LLM):
                 raise ValueError("LLM only supports a maximum of one stop token.")
             params['stop'] = stop
         
+        if 'seed' in kwargs:
+            params['seed'] = kwargs['seed']
+        
         hyperparams = {
             "linearSensitivity": kwargs.get("linearSensitivity", self.linear_sensitivity), 
             "threshParam": kwargs.get("threshParam", self.thresh_param), 
@@ -178,7 +189,9 @@ class CombinatorialReasoningLLM(LLM):
         result = {
             'text': response.json()[responseType], 
             'distinctReasons': response.json()['initialReasons'], 
-            'selectedReasons': response.json()['finalReasons']
+            'selectedReasons': response.json()['finalReasons'], 
+            'sampledReasonsMatrix': response.json()['sampledReasonsMatrix'],
+            'sampledReasonsFlat': response.json()['sampledReasonsFlat']
         }
 
         return result
@@ -243,6 +256,10 @@ class CombinatorialReasoningLLM(LLM):
             if len(stop) > 1:
                 raise ValueError("LLM only supports a maximum of one stop token.")
             params['stop'] = stop
+        
+        if 'seed' in kwargs:
+            params['seed'] = kwargs['seed']
+        
         
         hyperparams = {
             "linearSensitivity": kwargs.get("linearSensitivity", self.linear_sensitivity), 

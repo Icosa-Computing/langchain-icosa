@@ -44,12 +44,13 @@ llm.invoke("There are six animals: lion, hyena, elephant, deer, cat and mouse. S
 llm.invoke("There are six animals: lion, hyena, elephant, deer, cat and mouse. Separate them to three spaces to minimize conflict.") # excludes reasoning for solution
 ```
 
-The invoke method supports 5 keyword arguments:
+The invoke method supports 6 keyword arguments:
 1. `linear_sensitivity` Overrides the linear sensitivity parameter.
 2. `thresh_param`: Overrides the thresh parameter.
 3. `risk_param`: Overrides the risk parameter.
 4. `weight`: Overrides the weight parameter.
 5. `responseType`: Whether or not to include the LLM's reasoning in the response. Must be one of `answer` (default) or `answerWithReasoning`.
+6. `seed`: Sets the seed for the LLM.
 
 ### Streaming
 ```Python
@@ -63,12 +64,13 @@ Like the invoke method, streaming supports the following keyword arguments:
 2. `thresh_param`: Overrides the thresh parameter.
 3. `risk_param`: Overrides the risk parameter.
 4. `weight`: Overrides the weight parameter.
+5. `seed`: Sets the seed for the LLM.
 
 However, unlike invoke, streaming does not support different response types. All streams will include the final reasoning.
 
 ### Callbacks
 
-The LLM supports access to both the distinct reasons generated in the sampling step and the final reasons selected in the annealing step via the `CombinatorialReasoningCallbackHandler`. Example usage is shown below. 
+The LLM supports access to the sampled reasons, the distinct sampled reasons, and the final reasons selected in the annealing step via the `CombinatorialReasoningCallbackHandler`. Example usage is shown below. 
 
 ```Python
 from langchain_icosa.combinatorial_reasoning import CombinatorialReasoningLLM, CombinatorialReasoningCallbackHandler
