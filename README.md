@@ -50,7 +50,7 @@ The invoke method supports 6 keyword arguments:
 3. `risk_param`: Overrides the risk parameter.
 4. `weight`: Overrides the weight parameter.
 5. `responseType`: Whether or not to include the LLM's reasoning in the response. Must be one of `answer` (default) or `answerWithReasoning`.
-6. `seed`: Sets the seed for the LLM.
+6. `seed`: Sets the seed for the LLM. Defaults to 0.
 
 ### Streaming
 ```Python
@@ -64,7 +64,7 @@ Like the invoke method, streaming supports the following keyword arguments:
 2. `thresh_param`: Overrides the thresh parameter.
 3. `risk_param`: Overrides the risk parameter.
 4. `weight`: Overrides the weight parameter.
-5. `seed`: Sets the seed for the LLM.
+5. `seed`: Sets the seed for the LLM. Defaults to 0.
 
 However, unlike invoke, streaming does not support different response types. All streams will include the final reasoning.
 
