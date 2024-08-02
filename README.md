@@ -1,5 +1,7 @@
 # Icosa Computing LangChain Package
 
+[![PyPI version](https://img.shields.io/pypi/v/langchain_icosa.svg)](https://pypi.org/project/langchain-icosa/)
+
 The Icosa Computing LangChain Library provides convenient access to our flagship Combinatorial Reasoning LLM pipeline with out of the box support and integration with the LangChain LLM application framework.
 
 See our arXiv preprint [here](https://arxiv.org/pdf/2407.00071v1)!
