@@ -6,7 +6,7 @@ The Icosa Computing LangChain Library provides convenient access to our flagship
 
 See our live demo website [here](https://crdemo.icosacomputing.com/)!
 
-See our arXiv preprint [here](https://arxiv.org/pdf/2407.00071v1)!
+See our arXiv preprint [here](https://arxiv.org/abs/2407.00071)!
 
 ## Installation
 
