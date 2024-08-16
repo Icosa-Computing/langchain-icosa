@@ -18,7 +18,7 @@ API_LICENSE = {
     'pwd': 'Uy2xfygkssbZdUlpp0CO1UXSuqRFv3mVSw5utrE94NU'
 }
 
-API_ENDPOINT = "http://3.215.186.185"
+API_ENDPOINT = "https://cr-api.icosacomputing.com"
 
 class CombinatorialReasoningLLM(LLM):
     '''
