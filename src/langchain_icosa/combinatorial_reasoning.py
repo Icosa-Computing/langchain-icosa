@@ -195,6 +195,10 @@ class CombinatorialReasoningLLM(LLM):
             json=params,
             auth=HTTPBasicAuth(API_LICENSE["user"], API_LICENSE["pwd"]),
         )
+
+        if response.status_code == 400:
+            print(response.json()["detail"])
+
         response.raise_for_status()
 
         result = {
@@ -287,6 +291,8 @@ class CombinatorialReasoningLLM(LLM):
             auth=HTTPBasicAuth(API_LICENSE["user"], API_LICENSE["pwd"]),
             stream=True,
         ) as response:
+            if response.status_code == 400:
+                print(response.json()["detail"])
             response.raise_for_status()
             for token in response.iter_content(decode_unicode=True):
                 if token:
@@ -325,4 +331,3 @@ class CombinatorialReasoningCallbackHandler(BaseCallbackHandler):
                         ),
                     }
                 )
-
